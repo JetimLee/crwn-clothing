@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import '../menu-item/menu-item.styles.scss'
 
-const MenuItem = ({title, imageUrl, size}) => ( //this is the same as writing props.title
-  <div className={`${size} menu-item`}>
+const MenuItem = ({title, imageUrl, size, history,linkUrl, match }) => ( //this is the same as writing props.title
+  <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
     <div className='background-image' style={{
     backgroundImage: `url(${imageUrl})`
   }} />
@@ -14,4 +15,4 @@ const MenuItem = ({title, imageUrl, size}) => ( //this is the same as writing pr
 </div>
 );
 
-export default MenuItem;
+export default withRouter(MenuItem); //returns a super powered MenuItem that has access to history, location and mastery props
